@@ -139,4 +139,6 @@ int main() {
     // Output all nodes in linkedListMerge
     cout << "Linked List Merge:\n";
     outputLinkedList(linkedListMerge);
+
+    return 0;
 }
