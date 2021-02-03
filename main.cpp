@@ -3,7 +3,7 @@
 // Email: yono004@cougars.csusm.edu
 
 #include <iostream>
-using namespace std;
+using std::cout, std::endl;
 
 // Node Structure
 struct Node {
