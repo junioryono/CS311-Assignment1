@@ -48,7 +48,7 @@ Node* unionLL(Node* LA, Node* LB) {
     Node* duplicateNumber;
     
     // Go through the linked list by 1. The insidePointer will loop through every node during this.
-    while (unionizedPointer && unionizedPointer->next) {
+    while (unionizedPointer->next) {
         insidePointer = unionizedPointer;
 
         // Go through every unionizedPointer->num to check for duplicates
