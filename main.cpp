@@ -140,5 +140,10 @@ int main() {
     cout << "Linked List Merge:\n";
     outputLinkedList(linkedListMerge);
 
+    delete(linkedListA);
+    delete(linkedListB);
+    delete(linkedListUnion);
+    delete(linkedListMerge);
+
     return 0;
 }
