@@ -43,8 +43,8 @@ Node* unionLL(Node* LA, Node* LB) {
     Node* unionizedPointer = unionizedLL;
 
     // Create pointers for looping through unionizedPointer and removing duplicates
-    Node* insidePointer;
-    Node* duplicateNumber;
+    Node* insidePointer = NULL;
+    Node* duplicateNumber = NULL;
     
     // Go through the linked list by 1. The insidePointer will loop through every node during this.
     while (unionizedPointer->next) {
@@ -64,22 +64,72 @@ Node* unionLL(Node* LA, Node* LB) {
     return unionizedLL;
 }
 
+Node* sortLinkedList(Node * LL){
+    // Prevent recursion bugs
+	if (!LL) return LL;
+
+    // Set pointer equal to the linked list
+	Node* mergedPointer = LL;
+
+    // Set pointer equal to the next value in the linked list
+	Node* nextValuePointer = mergedPointer->next;
+
+    // Create pointers for the lower and higher numbers
+    Node* lowerNumber = NULL;
+	Node* higherNumber = NULL;
+
+    // Go through the linked list by 1. The insidePointer will loop through every node during this.
+	while (nextValuePointer) {
+	    Node* insidePointer = nextValuePointer->next;
+
+        // Go through every nextValuePointer->num to compare values
+		if (nextValuePointer->num < mergedPointer->num){
+            nextValuePointer->next = lowerNumber;
+            lowerNumber = nextValuePointer;
+		} else {
+            nextValuePointer->next = higherNumber;
+            higherNumber = nextValuePointer;
+		}
+		nextValuePointer = insidePointer;
+	}
+
+    // Sort the lower and higher numbers
+	lowerNumber = sortLinkedList(lowerNumber);
+	higherNumber = sortLinkedList(higherNumber);
+
+    // Go through all lower and higher numbers
+	if (lowerNumber) {
+	    Node* less_end = lowerNumber;
+	    while (less_end->next) less_end = less_end->next;
+
+        less_end->next = mergedPointer;
+        mergedPointer->next = higherNumber;
+
+        return lowerNumber;
+	} else mergedPointer->next = higherNumber;
+	
+    return mergedPointer;
+}
+
 Node* mergeLL(Node* LA, Node* LB) {
     // Initialize unionizedLL
-    Node* mergeLL = NULL;
+    Node* mergedLL = NULL;
     
     // Add both linked lists to unionizedLL
     while (LA) {
-        addToLinkedList(&mergeLL, LA->num);
+        addToLinkedList(&mergedLL, LA->num);
         LA = LA->next;
     }
 
     while (LB) {
-        addToLinkedList(&mergeLL, LB->num);
+        addToLinkedList(&mergedLL, LB->num);
         LB = LB->next;
     }
 
-    return mergeLL;
+    // Sort mergedLL
+    mergedLL = sortLinkedList(mergedLL);
+
+    return mergedLL;
 }
 
 // Function that outputs all nodes in a linked list.
