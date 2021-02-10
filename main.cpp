@@ -14,8 +14,7 @@ struct Node {
 // Function that adds nodes to a linked list.
 void addToLinkedList(Node** linkedList, int numberToAdd) {
     // Initialize and add new node
-    Node* newItem = NULL;
-    newItem = new Node();
+    Node* newItem = new Node();
 
     // Add values to the node
     newItem->num = numberToAdd;
