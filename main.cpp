@@ -64,7 +64,7 @@ Node* unionLL(Node* LA, Node* LB) {
     return unionizedLL;
 }
 
-Node* sortLinkedList(Node* LL){
+Node* sortLinkedList(Node* LL) {
     // Prevent recursion bugs
 	if (!LL) return LL;
 
